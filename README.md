@@ -5,5 +5,5 @@ learn from <https://egghead.io/courses/start-learning-react>
 npm install -g create-react-app  
 create-react-app react101
 
-----
+---
 
