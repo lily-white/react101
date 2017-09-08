@@ -25,7 +25,7 @@ create-react-app react101
  `App.propTypes = {
   txt: React.PropTypes.string,
   cat: React.PropTypes.number.isRequired
-}`
+}`  
    数字需要使用{}来赋值  
    `<App txt='this is a props value' cat={5}/>`  
  4.3 使用defaultProps设置默认属性值  
