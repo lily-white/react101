@@ -13,10 +13,10 @@ create-react-app react101
 
 ***
 ### 3.输出多个元素时要用一个元素包裹多个元素
-'<div>
+`<div>
       <h1>hello world</h1>
       <b>bold</b>
- </div>'
+ </div>`
  
  ***
  ### 4.props
