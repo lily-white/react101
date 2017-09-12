@@ -31,3 +31,31 @@ create-react-app react101
 }`
 
 ***
+### 5.setState
+constructor里声明state属性，setState改变属性值
+
+***
+### 6.component包含无状态的component
+`const Widget = (props) => 
+  <input type="text" onChange={props.update}/>`
+  
+***
+### 7.用this.props.children获取innerHTML和嵌套的子元素
+`class App extends Component {
+  render() {
+    return (
+      <Button>I <Heart/> react</Button>
+    );
+  }
+}
+const Button = (props) => <button>{props.children}</button>
+class Heart extends Component {
+  render() {
+    return (
+      <span>&hearts;</span>
+    );
+  }
+}`
+
+***
+### 8.自定义propType validation
