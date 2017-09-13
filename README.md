@@ -59,3 +59,71 @@ class Heart extends Component {
 
 ***
 ### 8.自定义propType validation
+`Title.propTypes = {
+  text(props, propName, component) {
+    if(!(propName in props)) {
+      return new Error(`miss ${propName}`);
+    }
+    if(props[propName].length <6) {
+      return new Error('${propName} was too short');
+    }
+  }
+}`
+
+***
+### 9.synthetic event system
+`class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentEvent: '----'
+    }
+    this.update = this.update.bind(this);
+  }
+  update(e) {
+    this.setState({
+      currentEvent: e.type
+    })
+  }
+  render() {
+    return (
+      <div>
+        <textarea 
+          onFocus = {this.update}
+          onCopy = {this.update}
+          onCut = {this.update}
+          onPaste = {this.update}
+          cols = "30"
+          rows = "10"
+        />
+        <h1>{this.state.currentEvent}</h1>
+      </div>
+    );
+  }
+}`
+
+***
+### 10.使用this.refs.获取指定元素
+使用ref直接定义属性`ref="a"`，使用this.ref.a获取元素  
+或者使用`ref={node => this.a = node}` 定义a属性，使用this.a获取元素  
+或者获取包含component的指定元素`ref={component => this.a = component}`,在component中指定input属性,使用this.a.refs.input获取元素
+
+***
+### 11.component生命周期
+componentWillMount componentDidMount componentWillUnmount执行一次  render组件状态变化时执行
+
+***
+### 12.与生命周期方法交互
+在componentDidMount绑定更改state的方法后，在componentWillUnmount里解除该绑定
+
+***
+### 13.componentWillReceiveProps props改变时调用该方法
+shouldComponentUpdate 是否更新元素状态
+componentDidUpdate 元素状态更新完成 shouldComponentUpdate返回true时 调用render再调用componentDidUpdate
+
+***
+### 14.动态获取数据创建component
+在componentWillMount方法里使用fetch获取数据setState
+
+***
+### 15.
