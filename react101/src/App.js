@@ -1,41 +1,161 @@
 import React, { Component } from 'react';
 import ReactDom from 'react-dom';
-//14.create component
+import JSXCompiler from './JSXCompiler';
+//19.cloneElement
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.filter = this.filter.bind(this);
-    this.state = {items:[]};
-  }
-  componentWillMount() {
-    fetch('http://swapi.co/api/people/?format=json')
-      .then(response => response.json())
-      .then(({results: items}) => {
-        // console.log(data.results);
-        this.setState({items});
-      });
-  }
-  filter(e) {
-    this.setState({filter: e.target.value});
-  }
   render() {
-    let items = this.state.items;
-    if(this.state.filter){
-      items = items.filter( item => 
-        item.name.toLowerCase()
-        .includes(this.state.filter.toLowerCase())
-      )
-    }
     return (
-      <div>
-        {/*{items.map( item => <h4 key={item.name}>{item.name}</h4> )}*/}
-        <input type="text" onChange={this.filter} />
-        {items.map( item => <Person key={item.name} person={item} /> )}
-      </div>
-    );
+      <Buttons>
+        <button value="A">A</button>
+        <button value="B">B</button>
+        <button value="C">C</button>
+      </Buttons>
+    )
   }
 }
-const Person = (props) => <h4 >{props.person.name}</h4>
+class Buttons extends Component {
+  constructor(props) {
+    super(props);
+  
+    this.state = {selected: 'none'};
+  }
+  selectItem(selected){
+    this.setState({selected});
+  }
+  render() {
+    let fn = (item) => React.cloneElement(item, {onClick: this.selectItem.bind(this, item.props.value)});
+    let items = React.Children.map(this.props.children, fn);
+    return (
+      <div>
+        <h2>You have selected: {this.state.selected}</h2>
+        {items}
+      </div>
+    )
+  }
+}
+//18.React.children
+// class App extends Component {
+//   render() {
+//     return (
+//       <Parent>
+//         <div className="childA"></div>
+//       </Parent>
+//     )
+//   }
+// }
+// class Parent extends Component {
+//   render() {
+//     // let items = this.props.children;
+//     // items = React.Children.toArray(items);
+//     let items = React.Children.only(this.props.children);
+//     console.log(items);
+//     // items.map(item => console.log(item));
+//     // React.Children.map(items, item => console.log(item));
+
+//     // React.Children.forEach(items, item => console.log(item));
+
+//     return null;
+//   }
+// }
+//17.React.createElement
+// class App extends Component {
+//   render() {
+//     return (
+//       <JSXCompiler />
+//     )
+//   }
+// }
+//16.jsx compiler
+// class App extends Component {
+//   render() {
+//     return (
+//       <JSXCompiler />
+//     )
+//   }
+// }
+//15.higher order component
+// const HOC = (InnerComponent) => class extends Component {
+//   constructor(props) {
+//     super(props);
+  
+//     this.state = {count:0};
+//     this.update = this.update.bind(this);
+//   }
+//   update(e) {
+//     this.setState({count: this.state.count+1})
+//   }
+//   componentWillMount() {
+//     console.log('hoc mount');
+//   }
+//   render() {
+//     return (
+//       <InnerComponent 
+//         {...this.props}
+//         {...this.state}
+//         update={this.update}
+//       />
+//     )
+//   }
+// }
+// class App extends Component {
+//   render() {
+//     return (
+//       <div>
+//         <Button>button</Button>
+//         <br />
+//         <LabelHOC>label</LabelHOC>
+//       </div>
+//     )
+//   }
+// }
+// const Button = HOC((props) => <button onClick={props.update}>{props.children}-{props.count}</button>)
+// class Label extends Component {
+//   componentWillMount() {
+//     console.log('label mount');
+//   }
+//   render() {
+//     return (
+//       <label onMouseMove={this.props.update}>>{this.props.children}-{this.props.count}</label>
+//     )
+//   }
+// }
+// const LabelHOC = HOC(Label);
+//14.create component
+// class App extends Component {
+//   constructor(props) {
+//     super(props);
+//     this.filter = this.filter.bind(this);
+//     this.state = {items:[]};
+//   }
+//   componentWillMount() {
+//     fetch('http://swapi.co/api/people/?format=json')
+//       .then(response => response.json())
+//       .then(({results: items}) => {
+//         // console.log(data.results);
+//         this.setState({items});
+//       });
+//   }
+//   filter(e) {
+//     this.setState({filter: e.target.value});
+//   }
+//   render() {
+//     let items = this.state.items;
+//     if(this.state.filter){
+//       items = items.filter( item => 
+//         item.name.toLowerCase()
+//         .includes(this.state.filter.toLowerCase())
+//       )
+//     }
+//     return (
+//       <div>
+//         {/*{items.map( item => <h4 key={item.name}>{item.name}</h4> )}*/}
+//         <input type="text" onChange={this.filter} />
+//         {items.map( item => <Person key={item.name} person={item} /> )}
+//       </div>
+//     );
+//   }
+// }
+// const Person = (props) => <h4 >{props.person.name}</h4>
 //13.componentWillReceiveProps
 // class App extends Component {
 //   constructor(props) {

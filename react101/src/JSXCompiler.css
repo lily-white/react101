@@ -1,0 +1,24 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+header {
+    height: 5vh;
+    display: block;
+    background: pink;
+    color: red;
+    font-size: 28px;
+}
+.container {
+    height: 95vh;
+    display: flex;
+}
+pre {
+    background: #f8f8f8;
+}
+textarea, pre {
+    width: 50%;
+    font-size: 28px;
+    margin: 0;
+    padding: 10px;
+}
