@@ -126,4 +126,28 @@ componentDidUpdate 元素状态更新完成 shouldComponentUpdate返回true时 �
 在componentWillMount方法里使用fetch获取数据setState
 
 ***
-### 15.
+### 15.higher order component高阶组件装饰器
+HOC先mount，被包裹的组件再mount  
+通过{...this.props}{...this.state}传递属性  
+被包裹组件通过props.获取属性 状态 方法
+
+***
+### 16.jsx compiler 
+引入babel， 用babel.transform返回code
+
+***
+### 17.jsx转换成React.createElement
+
+***
+### 18.React.Children
+this.props.children 包含单个子元素的时候返回单个object  
+可用React.Children.map(this.props.children, () => {})
+或React.Children.forEach(this.props.children, () => {})遍历children  
+可用React.Children.toArray(items)转换成数组  
+包含单个子元素时可用React.Children.only(this.props.children）获取
+
+***
+### 19.React.cloneElement
+用React.cloneElement给元素扩展方法
+
+***
